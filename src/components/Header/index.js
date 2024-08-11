@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { signOut } from "firebase/auth";
 import { toast } from 'react-toastify';
+import { UserOutlined } from '@ant-design/icons';
 
 function Header() {
     const navigate = useNavigate();
@@ -32,7 +33,12 @@ function Header() {
     return (
         <div className='navbar'>
             <p className='logo' >FinTracker</p>
-            {user && <p className='logo link' onClick={logoutFunc}>Logout</p>}
+            {user && <>
+                <div className="user-wrapper">
+                    <p className='logo link' onClick={logoutFunc}>Logout</p>
+                    {user.photoURL ? <img src={user.photoURL} height="32px" width="32px" style={{borderRadius:"50%"}}/> : <UserOutlined style={{fontSize:"22px"}}/>}
+                </div>
+            </>}
         </div>
     )
 }

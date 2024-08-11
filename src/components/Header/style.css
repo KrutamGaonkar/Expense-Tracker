@@ -1,12 +1,12 @@
 .navbar{
     background-color: var(--theme);
     padding: 0.5rem 1rem;
-    position: sticky;
     top: 0;
     left: 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    height: 44px;
 }
 
 .logo{
@@ -23,4 +23,11 @@
 .link:hover{
     opacity: 0.8;
     transition: all 0.3;
+}
+
+.user-wrapper{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.5rem;
 }

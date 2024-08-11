@@ -1,0 +1,31 @@
+.my-card{
+    box-shadow: var(--shadow);
+    border-radius: 0.5rem;
+    margin: 2rem;
+    min-width: 200px;
+    flex: 1;
+    font-weight: 600;
+}
+
+.my-row{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: space-between;
+    align-items: center;
+    margin: auto;
+    width: 90%; 
+}
+
+.my-p{
+    padding: 0;
+    font-weight: 500;
+}
+
+.ant-card-body{
+    padding: 0 1.5rem !important;
+}
+
+.ant-card-head{
+    padding: 0 1.5rem !important;
+}

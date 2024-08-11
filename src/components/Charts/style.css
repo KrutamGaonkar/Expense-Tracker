@@ -1,0 +1,29 @@
+.charts{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1rem 2rem 1rem;
+    /* box-shadow: var(--shadow); */
+}
+
+.main-warpper{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    box-shadow: var(--shadow);
+    border-radius: 0.25rem;
+    padding: 0 2rem 2rem 2rem;
+    width: 100%;
+}
+
+.chart-wrapper{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    /* box-shadow: var(--shadow); */
+    border-radius: 0.25rem;
+}
+
+.chart{
+    box-shadow: var(--shadow);
+}

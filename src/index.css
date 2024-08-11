@@ -1,8 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
 :root{
-  --theme: #00678a;
-  /* --theme: #2970ff; */
+  /* --theme: #00678a; */
+  --theme: #ff4a4a;
+  /* --theme: #1c7c8b; */
+  /*#17a6c6*/
   --black: #000;
   --white: #fff;
   --shadow: 0px 0px 30px 8px rgba(227, 227, 227, 0.75); 
@@ -13,4 +15,67 @@ body {
   font-family: "Montserrat", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.my-input{
+  border-width: 0;
+  border-bottom-width: 1px; 
+  width: 100%;
+  font-size: 0.8rem;
+  border-radius: 0;
+  padding: 0;
+}
+
+.my-input:focus{
+  outline: none;
+  transition: all 0.2;
+  box-shadow: none;
+  border-bottom: 1px solid var(--black);
+}
+
+.my-input::placeholder{
+  color: grey;
+}
+
+.form-label{
+  padding: 0 !important;
+}
+
+.ant-modal-header{
+  padding-bottom: 6px !important;
+}
+
+.my-btn {
+  color: var(--theme);
+  text-align: center;
+  width: 100%;
+  margin: 0.5rem 0rem;
+  padding: 0.5rem !important;
+  background-color: #fff;
+  border: 1px solid var(--theme);
+  border-radius: 0.25rem;
+  cursor: pointer;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  height: auto !important;
+  font-size: 0.8rem;
+  font-weight: 160000;
+}
+
+.my-btn:hover {
+  background-color: var(--theme);
+  color: #fff;
+  transition: all 0.3s;
+}
+
+.my-btn-blue {
+  background-color: var(--theme);
+  color: #fff;
+}
+
+.my-btn-blue:hover {
+  background-color: #fff !important;
+  color: var(--theme) !important;
+  transition: all 0.3s;
 }

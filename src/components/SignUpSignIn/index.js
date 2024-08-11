@@ -85,7 +85,6 @@ function SignUpSignIn() {
   }
 
   function googleAuth() {
-    setLoading(true);
     signInWithPopup(auth, provider)
       .then((result) => {
         const credential = GoogleAuthProvider.credentialFromResult(result);
@@ -93,7 +92,6 @@ function SignUpSignIn() {
         const user = result.user;
         createDoc(user);
         navigate('/dashboard');
-        setLoading(false);
       }).catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
@@ -120,7 +118,7 @@ function SignUpSignIn() {
         toast.error(e.message);
       }
     }else{
-      toast.error("Doc already exists");
+      toast.error("User already exists");
     }
   }
 
