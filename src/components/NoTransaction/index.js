@@ -5,8 +5,8 @@ import './style.css';
 function NoTransaction() {
   return (
     <div className='no-transaction'>
-      <img src={transactions} style={{width:"360px", margin:"2rem"}}/>
-      <p style={{fontWeight:"600", fontSize:"20px"}}>You Have No Transactions Currently</p>
+      <img src={transactions} className='no-transactoin-image'/>
+      <p className='no-transactoin-text'>You Have No Transactions Currently</p>
     </div>
   )
 }

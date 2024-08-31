@@ -33,7 +33,7 @@ function TransactionTable({ transactions, addTransaction, fetchTransaction }) {
             dataIndex: 'tag',
             key: 'tag',
             render: (_, { tag }) => (
-                <Tag color={tag == "Salary" || tag == "Freelance" ? "green" : "red"} key={tag} bordered={false}>
+                <Tag className='mobile-tags' color={tag == "Salary" || tag == "Freelance" ? "green" : "red"} key={tag} bordered={false}>
                     {tag.toUpperCase()}
                 </Tag>
             ),
@@ -123,22 +123,24 @@ const handleDeleteRecord = async(record) => {
             <div className="transaction-table">
                 <div className="table-heading-wrapper">
                     <h3>My Transactions</h3>
-                    <Radio.Group onChange={(e) => { setSortBy(e.target.value) }} value={sortBy}>
-                        <Radio.Button className='sortBtns' value="">No Sort</Radio.Button>
-                        <Radio.Button className='sortBtns' value="date">Sort by Date</Radio.Button>
-                        <Radio.Button className='sortBtns' value="amount">Sort by Amount</Radio.Button>
-                    </Radio.Group>
-                    <div className="import-export-wrapper">
-                        <div className="my-btn"onClick={exportCsv}>Export to CSV</div>
-                        <label for="file-csv" className="my-btn my-btn-blue">Import from CSV</label>
-                        <input
-                            id="file-csv"
-                            type="file"
-                            accept=".csv"
-                            required
-                            onChange={importCsv}
-                            style={{ display: "none" }}
-                        />
+                    <div className="sort-wrapper">
+                        <Radio.Group onChange={(e) => { setSortBy(e.target.value) }} value={sortBy}>
+                            <Radio.Button className='sortBtns' value="">No Sort</Radio.Button>
+                            <Radio.Button className='sortBtns' value="date">Sort by Date</Radio.Button>
+                            <Radio.Button className='sortBtns' value="amount">Sort by Amount</Radio.Button>
+                        </Radio.Group>
+                        <div className="import-export-wrapper">
+                            <div className="my-btn" onClick={exportCsv}>Export to CSV</div>
+                            <label for="file-csv" className="my-btn my-btn-blue">Import from CSV</label>
+                            <input
+                                id="file-csv"
+                                type="file"
+                                accept=".csv"
+                                required
+                                onChange={importCsv}
+                                style={{ display: "none" }}
+                            />
+                        </div>
                     </div>
                 </div>
                 <div className="search-wrapper">
@@ -152,9 +154,9 @@ const handleDeleteRecord = async(record) => {
                         placeholder="Filter"
                         style={{ boxShadow: "var(--shadow)", borderRadius: "0.25rem" }}
                         bordered={false}>
-                        <Option value="">All</Option>
-                        <Option value="Income">Income</Option>
-                        <Option value="Expense">Expense</Option>
+                        <Option className="select-value" value="">All</Option>
+                        <Option className="select-value" value="Income">Income</Option>
+                        <Option className="select-value" value="Expense">Expense</Option>
                     </Select>
                 </div>
                 <Table rowKey={sortedTransactions.id} dataSource={sortedTransactions} columns={columns} scroll={{ x: true }}/>
