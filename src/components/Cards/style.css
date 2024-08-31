@@ -29,3 +29,12 @@
 .ant-card-head{
     padding: 0 1.5rem !important;
 }
+
+@media (max-width: 480px) {
+    .my-card{
+        margin: 1rem 0 0 0;
+    }
+    .no-top-margin{
+        margin-top: 0 !important;
+    }
+}
