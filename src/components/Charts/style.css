@@ -24,6 +24,30 @@
     border-radius: 0.25rem;
 }
 
-.chart{
+.chart1{
+    position: relative;
     box-shadow: var(--shadow);
+    width: 56.5rem;
+    height: 350px;
+}
+
+.chart2{
+    position: relative;
+    box-shadow: var(--shadow);
+    width: 28rem;  
+    height: 350px;  
+}
+
+@media (max-width: 480px) {
+    .chart-wrapper{
+        flex-wrap: wrap;
+    }
+    .chart1{
+        width: 80%;
+        height: 120px;
+    }
+    .chart2{
+        width: 80%;
+        height: 120px;
+    }
 }

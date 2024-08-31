@@ -2,10 +2,20 @@ import Modal from 'antd/es/modal/Modal'
 import { DatePicker, Form, Input, Select, Button } from 'antd';
 import { useForm } from 'antd/es/form/Form';
 
-function AddIncomeModal({isIncomeModalVisible, setIsIncomeModalVisible, onFinish}) {
+function AddIncomeModal({isIncomeModalVisible, setIsIncomeModalVisible, formValues, setFormValues, onFinish}) {
     const [form] = useForm();
+    form.setFieldsValue(formValues);
     return (
-        <Modal style={{paddingBottom:'1.5rem'}} open={isIncomeModalVisible} title="Add Income" onCancel={() => { setIsIncomeModalVisible(false) }} footer={null}>
+        <Modal style={{paddingBottom:'1.5rem'}} open={isIncomeModalVisible} title="Add Income" onCancel={() => {
+            setIsIncomeModalVisible(false);
+            setFormValues({
+                ['name']: '',
+                ['amount']: '',
+                ['date']: null,
+                ['tag']: ''
+              })
+            }} 
+            footer={null}>
             <Form form={form} layout='vertical' onFinish={(values)=>{
                 onFinish(values, "Income");
                 form.resetFields();
@@ -37,7 +47,7 @@ function AddIncomeModal({isIncomeModalVisible, setIsIncomeModalVisible, onFinish
                     label={"Date"}
                     name={"date"}
                     className='from-label'>
-                    <DatePicker className='my-input'/>
+                    <DatePicker className='my-input' value={formValues.date}/>
                 </Form.Item>
                 <Form.Item 
                 rules={[

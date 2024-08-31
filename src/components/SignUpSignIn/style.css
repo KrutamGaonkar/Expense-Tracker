@@ -22,3 +22,12 @@
     color: var(--theme);
     cursor: pointer;
 }
+
+@media (max-width: 480px) {
+    .title{
+      font-size: 1rem;
+    }
+    .p-login{
+        font-size: 0.6rem;
+      }
+  }

@@ -26,3 +26,14 @@
     color: var(--theme);
     transition: all 0.3s;
 }
+
+.disable{
+    pointer-events: none;
+    opacity: 0.7;
+}
+
+@media (max-width: 480px) {
+    .btn{
+      font-size: 0.7rem;
+    }
+}

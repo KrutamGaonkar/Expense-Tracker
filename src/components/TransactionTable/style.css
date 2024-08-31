@@ -53,3 +53,32 @@
 .import-btn{
     width: 100px !important;
 }
+
+.sortBtns{
+    font-weight: 500;
+}
+
+@media (max-width: 480px) {
+    .table-heading-wrapper{
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .transaction-table{
+        margin: 0.5rem;
+        padding: 0.5rem;
+    }
+
+    .ant-table-cell{
+        font-size: 0.6rem !important;
+    }
+
+    .sortBtns{
+        font-size: 0.55rem;
+    }
+
+    .import-export-wrapper{
+        margin: 0 -0.5rem;
+    }
+
+
+}

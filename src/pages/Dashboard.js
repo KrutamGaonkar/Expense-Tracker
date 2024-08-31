@@ -3,13 +3,14 @@ import Header from '../components/Header'
 import Card from '../components/Cards'
 import AddIncomeModal from '../components/Modals/addIncomeModal'
 import AddExpenseModal from '../components/Modals/addExpenseModal';
-import { addDoc, collection, getDocs } from 'firebase/firestore';
+import { addDoc, collection, deleteDoc, doc, getDocs, writeBatch } from 'firebase/firestore';
 import { toast } from 'react-toastify';
 import { auth, db } from "../firebase";
 import { useAuthState } from 'react-firebase-hooks/auth';
 import TransactionTable from '../components/TransactionTable';
 import Charts from '../components/Charts';
 import NoTransaction from '../components/NoTransaction';
+import DeleteModal from '../components/Modals/deleteModal';
 
 function Dashboard() {
   const [user] = useAuthState(auth);
@@ -20,6 +21,13 @@ function Dashboard() {
   const [totalBalance, setTotalBalance] = useState(0);
   const [isIncomeModalVisible, setIsIncomeModalVisible] = useState(false);
   const [isExpenseModalVisible, setIsExpenseModalVisible] = useState(false);
+  const [isDeleteModalVisible, setIsDeleteModalVisible] = useState(false);
+  const [formValues, setFormValues] = useState({
+    ['name']: '',
+    ['amount']: '',
+    ['date']: null,
+    ['tag']: ''
+  });
   
   function formatDate(date) {
     if (date.includes('-')) {
@@ -71,7 +79,7 @@ function Dashboard() {
       let transactionArray = [];
       const querySnapshot = await getDocs(collection(db, `users/${user.uid}/transactions`));
       querySnapshot.forEach((doc) => {
-        transactionArray.push(doc.data());
+        transactionArray.push({id:doc.id, ...doc.data()});
       });
       setTransactions(transactionArray);
       console.log(transactionArray);
@@ -104,12 +112,28 @@ function Dashboard() {
     })
   }
 
+  async function deleteAllData(){
+    const transactionsRef = collection(db, `users/${user.uid}/transactions`);
+    const snapshot = await getDocs(transactionsRef);
+    const batch = writeBatch(db);
+    snapshot.forEach((doc) => {
+      batch.delete(doc.ref);
+    });
+    await batch.commit();
+    console.log("All transactions deleted successfully");
+    fetchTransaction();
+    setTotalIncome(0);
+    setTotalExpense(0);
+    setTotalBalance(0);
+  }
+
   return (
     <div>
       <Header/>
-      <Card setIsIncomeModalVisible={setIsIncomeModalVisible} setIsExpenseModalVisible={setIsExpenseModalVisible} income={totalIncome} expense={totalExpense} balance={totalBalance}/>
-      {isIncomeModalVisible && <AddIncomeModal isIncomeModalVisible={isIncomeModalVisible} setIsIncomeModalVisible={setIsIncomeModalVisible} onFinish={onFinish}/>}
+      <Card setIsIncomeModalVisible={setIsIncomeModalVisible} setIsExpenseModalVisible={setIsExpenseModalVisible} setIsDeleteModalVisible={setIsDeleteModalVisible} income={totalIncome} expense={totalExpense} balance={totalBalance}/>
+      {isIncomeModalVisible && <AddIncomeModal isIncomeModalVisible={isIncomeModalVisible} setIsIncomeModalVisible={setIsIncomeModalVisible} formValues={formValues} setFormValues={setFormValues} onFinish={onFinish}/>}
       {isExpenseModalVisible && <AddExpenseModal isExpenseModalVisible={isExpenseModalVisible} setIsExpenseModalVisible={setIsExpenseModalVisible} onFinish={onFinish}/>}
+      {isDeleteModalVisible && <DeleteModal isDeleteModalVisible={isDeleteModalVisible} setIsDeleteModalVisible={setIsDeleteModalVisible} deleteAllData={deleteAllData} />}
       {transactions.length!=0 ? <Charts transactions={transactions}/> : <NoTransaction/>}
       <TransactionTable transactions={transactions} addTransaction={addTransaction} fetchTransaction={fetchTransaction}/>
     </div>

@@ -42,9 +42,8 @@ function Charts({ transactions }) {
   console.log(sortedExpenseDataByTags)
   const lineConfig = {
     data: sortedExpenseData,
-    width: 900,
-    height: 350,
-    autoFit: false,
+    // width: 900,
+    autoFit: true,
     xField: 'date',
     yField: 'amount'
   };
@@ -54,8 +53,9 @@ function Charts({ transactions }) {
     angleField: 'amount',
     colorField: 'tag',
     innerRadius: 0.5,
-    width: 500,
-    height: 350,
+    // width: 500,
+    // height:350,
+    autoFit: true,
     legend: {
       color: {
         title: false,
@@ -78,10 +78,10 @@ function Charts({ transactions }) {
       <div className="main-warpper">
         <h3>My Spendings</h3>
         <div className="chart-wrapper">
-          <div className="chart">
+          <div className="chart1">
             <Line {...lineConfig} onReady={(chartInstance) => (chart = chartInstance)}/>
           </div>
-          <div className="chart">
+          <div className="chart2">
             <Pie {...pieConfig}/>
           </div>
         </div>

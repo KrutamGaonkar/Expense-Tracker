@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import "./style.css"
 import { auth } from '../../firebase';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate} from 'react-router-dom';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { signOut } from "firebase/auth";
 import { toast } from 'react-toastify';
@@ -14,6 +14,9 @@ function Header() {
     useEffect(()=>{
         if(user){
             navigate('/dashboard');
+        }
+        else{
+            navigate('/');
         }
     },[user, loading])
 

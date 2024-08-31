@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
-import { Table, Radio, Select, Tag } from "antd";
+import { Table, Radio, Select, Tag, Space } from "antd";
 import { SearchOutlined } from '@ant-design/icons';
 import { parse, unparse } from "papaparse";
 import './style.css';
 import { toast } from 'react-toastify';
+import { DeleteOutlined } from '@ant-design/icons';
+import { db, auth, doc, deleteDoc } from "../../firebase";
+
 const { Option } = Select;
 function TransactionTable({ transactions, addTransaction, fetchTransaction }) {
     const [search, setSearch] = useState("");
@@ -39,8 +42,27 @@ function TransactionTable({ transactions, addTransaction, fetchTransaction }) {
             title: 'Date',
             dataIndex: 'date',
             key: 'date',
+        },
+        {
+            title: 'Action',
+            key: 'action',
+            align: 'center',
+            render: (_, record) => (
+              <Space size="middle">
+                <a onClick={() => handleDeleteRecord(record)}><DeleteOutlined /></a>
+              </Space>
+            ),
         }
     ];
+
+const handleDeleteRecord = async(record) => {
+    console.log(record);
+    const transactionDocRef = doc(db, 'users', auth.currentUser.uid, 'transactions', record.id);
+    await deleteDoc(transactionDocRef);
+    toast.success('Transaction Deleted!');
+    fetchTransaction();
+}
+
     let filterTransactions = transactions.filter((item) =>
         item.name.toLowerCase().includes(search.toLowerCase()) && item.type.includes(filterType));
 
@@ -102,13 +124,13 @@ function TransactionTable({ transactions, addTransaction, fetchTransaction }) {
                 <div className="table-heading-wrapper">
                     <h3>My Transactions</h3>
                     <Radio.Group onChange={(e) => { setSortBy(e.target.value) }} value={sortBy}>
-                        <Radio.Button style={{ fontWeight: "500" }} value="">No Sort</Radio.Button>
-                        <Radio.Button style={{ fontWeight: "500" }} value="date">Sort by Date</Radio.Button>
-                        <Radio.Button style={{ fontWeight: "500" }} value="amount">Sort by Amount</Radio.Button>
+                        <Radio.Button className='sortBtns' value="">No Sort</Radio.Button>
+                        <Radio.Button className='sortBtns' value="date">Sort by Date</Radio.Button>
+                        <Radio.Button className='sortBtns' value="amount">Sort by Amount</Radio.Button>
                     </Radio.Group>
                     <div className="import-export-wrapper">
-                        <div className="my-btn" style={{ width: '8rem', fontSize: "0.8rem", fontWeight: "600", margin: "0.5rem" }} onClick={exportCsv}>Export to CSV</div>
-                        <label for="file-csv" className="my-btn my-btn-blue" style={{ width: '8rem', fontSize: "0.8rem", fontWeight: "600", margin: "0.5rem 0" }}>Import from CSV</label>
+                        <div className="my-btn"onClick={exportCsv}>Export to CSV</div>
+                        <label for="file-csv" className="my-btn my-btn-blue">Import from CSV</label>
                         <input
                             id="file-csv"
                             type="file"
@@ -135,7 +157,7 @@ function TransactionTable({ transactions, addTransaction, fetchTransaction }) {
                         <Option value="Expense">Expense</Option>
                     </Select>
                 </div>
-                <Table dataSource={sortedTransactions} columns={columns} />
+                <Table rowKey={sortedTransactions.id} dataSource={sortedTransactions} columns={columns} scroll={{ x: true }}/>
             </div>
         </div>
     )

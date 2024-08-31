@@ -3,7 +3,7 @@ import './style.css'
 
 function Button({ disable, text, onClick, blue}) {
   return (
-    <div className={blue?'btn btn-blue':'btn'} onClick={onClick} disabled={disable}>{text}</div>
+    <div className={disable && blue ? 'btn btn-blue disable' : blue ? 'btn btn-blue' : disable ? 'disable btn' : 'btn'} onClick={onClick}>{text}</div>
   )
 }
 

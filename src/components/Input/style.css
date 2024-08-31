@@ -24,3 +24,12 @@
 .custom-input::placeholder{
     color: grey;
 }
+
+@media (max-width: 480px) {
+    .input-label{
+      font-size: 0.7rem;
+    }
+    .custom-input{
+        font-size: 0.6rem;
+      }
+}
