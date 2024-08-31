@@ -1,0 +1,101 @@
+.search-wrapper{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 1rem 0;
+}
+
+.input-flex{
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    box-shadow: var(--shadow);
+    border-radius: 0.25rem;
+    width: 100%;
+    padding: 0 0.5rem;
+    margin-right: 1rem;
+}
+
+.search-input{
+    padding: 0.5rem 0;
+    border: 0;
+    width: 100%;
+}
+
+.input-flex input:focus{
+    outline: none;
+}
+
+.select-input{
+    width: 16rem;
+}
+
+.transaction-table{
+    box-shadow: var(--shadow);
+    margin: 1rem;
+    padding: 1rem;
+    border-radius: 0.25rem;
+}
+
+.table-heading-wrapper{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.import-export-wrapper{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.import-btn{
+    width: 100px !important;
+}
+
+.sortBtns{
+    font-weight: 500;
+}
+
+.sort-wrapper{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 60%;
+}
+
+@media (max-width: 480px) {
+    .table-heading-wrapper{
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .transaction-table{
+        margin: 0.5rem;
+        padding: 0.5rem;
+    }
+
+    .ant-table-cell{
+        font-size: 0.6rem !important;
+    }
+
+    .sortBtns{
+        font-size: 0.55rem;
+    }
+
+    .import-export-wrapper{
+        margin: 0 -0.5rem;
+    }
+
+    .mobile-tags{
+        font-size: 0.6rem;
+    }
+
+    .sort-wrapper{
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+    }
+}

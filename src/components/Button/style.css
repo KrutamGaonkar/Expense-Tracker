@@ -1,0 +1,39 @@
+.btn{
+    color: var(--theme);
+    background-color: var(--white);
+    padding: 0.5rem;
+    margin: 1rem 0rem;
+    border-radius: 0.25rem;
+    text-align: center;
+    border: 1px solid var(--theme);
+    cursor: pointer;
+    font-size: 0.8rem;
+}
+
+.btn:hover{
+    background-color: var(--theme);
+    color: var(--white);
+    transition: all 0.3s;
+}
+
+.btn-blue{
+    background-color: var(--theme);
+    color: var(--white);
+}
+
+.btn-blue:hover{
+    background-color: var(--white);
+    color: var(--theme);
+    transition: all 0.3s;
+}
+
+.disable{
+    pointer-events: none;
+    opacity: 0.7;
+}
+
+@media (max-width: 480px) {
+    .btn{
+      font-size: 0.7rem;
+    }
+}

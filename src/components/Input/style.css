@@ -1,0 +1,35 @@
+.input-wrapper{
+    margin-bottom: 1.5rem;
+}
+
+.input-label{
+    margin-bottom: 0.5rem;
+    font-size: 0.8rem;
+}
+
+.custom-input{
+    border-width: 0;
+    border-bottom-width: 1px; 
+    width: 100%;
+    font-size: 0.8rem;
+    opacity: 0.8;
+}
+
+.custom-input:focus{
+    outline: none;
+    opacity: 1;
+    transition: all 0.2;
+}
+
+.custom-input::placeholder{
+    color: grey;
+}
+
+@media (max-width: 480px) {
+    .input-label{
+      font-size: 0.7rem;
+    }
+    .custom-input{
+        font-size: 0.7rem;
+      }
+}

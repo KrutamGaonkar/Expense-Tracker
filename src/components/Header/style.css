@@ -1,0 +1,33 @@
+.navbar{
+    background-color: var(--theme);
+    padding: 0.5rem 1rem;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 44px;
+}
+
+.logo{
+    color:var(--white);
+    font-Weight:600; 
+    font-Size:1.2rem;
+}
+
+.link{
+    opacity: 0.6;
+    cursor: pointer;
+}
+
+.link:hover{
+    opacity: 0.8;
+    transition: all 0.3;
+}
+
+.user-wrapper{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.5rem;
+}

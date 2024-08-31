@@ -1,0 +1,29 @@
+.no-transaction{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    margin-bottom: 2rem;
+}
+
+.no-transactoin-image{
+    width: 360px;
+    margin: 2rem;
+}
+
+.no-transactoin-text{
+    font-weight: 600;
+    font-size: 20px;
+}
+
+@media (max-width: 480px) {
+    .no-transactoin-image{
+        width: 180px;
+    }
+
+    .no-transactoin-text{
+        font-weight: 600;
+        font-size: 15px;
+    }
+}

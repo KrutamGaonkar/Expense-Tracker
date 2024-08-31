@@ -1,0 +1,33 @@
+.signup-wrapper{
+    width: 70%;
+    max-width: 400px;
+    height: auto;
+    box-shadow: var(--shadow);
+    border-radius: 1rem;
+    padding: 1rem 1.5rem;
+}
+
+.title{
+    font-weight: 500;
+    font-size: 1.2rem;
+    text-align: center;
+}
+
+.p-login{
+    font-size: 0.8rem;
+    text-align: center;
+}
+
+.span-login{
+    color: var(--theme);
+    cursor: pointer;
+}
+
+@media (max-width: 480px) {
+    .title{
+      font-size: 1rem;
+    }
+    .p-login{
+        font-size: 0.7rem;
+      }
+  }
